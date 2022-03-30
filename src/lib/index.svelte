@@ -1,17 +1,19 @@
 <script>
     import { onMount } from "svelte";
-     export let attrs;
+    export let attrs;
     export let lang = undefined;
 
     onMount(async ()=>{
 
 
         if (lang){
-            let langScript = document.querySelector(`script[src="${lang}"]`);
+            let url = `https://cusdis.com/js/widget/lang/${lang}.js`;
+            let langScript = document.querySelector(`script[src="${url}"]`);
             if (!langScript){
                 langScript = document.createElement("script");
                 langScript.setAttribute("defer",true);
                 langScript.setAttribute("async",true);
+                langScript.src = url;
                 document.querySelector("head").appendChild(langScript);
             }
         }

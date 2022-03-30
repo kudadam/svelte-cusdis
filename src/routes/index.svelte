@@ -1,5 +1,5 @@
 <script>
-	import Cusdis from "$lib/svelte-cusdis";
+	import Cusdis from "$lib";
 </script>
 
 <svelte:head>
