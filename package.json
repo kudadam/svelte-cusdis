@@ -1,6 +1,21 @@
 {
   "name": "svelte-cusdis",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "This is Cusdis integration for Svelte",
+  "author": "Lucretius Biah",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kudadam/svelte-cusdis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kudadam/svelte-cusdis/issues"
+  },
+  "homepage": "https://github.com/kudadam/svelte-cusdis#readme",
+  "keywords": [
+    "cusdis",
+    "svelte",
+    "svelte cusdis"
+  ],
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
