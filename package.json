@@ -2,7 +2,11 @@
   "name": "svelte-cusdis",
   "version": "0.0.2",
   "description": "This is Cusdis integration for Svelte",
-  "author": "Lucretius Biah",
+  "author": {
+    "name": "Lucretius Biah",
+    "email": "lucretiusbiah@protonmail.com",
+    "url": "https://www.kudadam.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kudadam/svelte-cusdis.git"
