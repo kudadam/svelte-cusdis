@@ -1,10 +1,15 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount, createEventDispatcher, afterUpdate } from "svelte";
     export let attrs;
     export let lang = undefined;
 
-    onMount(async ()=>{
+    const dispatch = createEventDispatcher();
 
+    afterUpdate(async ()=>{
+        loaded();
+    })
+
+    onMount(async ()=>{
 
         if (lang){
             let url = `https://cusdis.com/js/widget/lang/${lang}.js`;
@@ -12,10 +17,13 @@
             if (!langScript){
                 langScript = document.createElement("script");
                 langScript.setAttribute("defer",true);
-                langScript.setAttribute("async",true);
                 langScript.src = url;
                 document.querySelector("head").appendChild(langScript);
             }
+        }
+
+        const loaded = ()=>{
+            dispatch("load");
         }
 
         let url = "https://cusdis.com/js/cusdis.es.js";
@@ -25,6 +33,7 @@
             script.src = url;
             script.defer = true;
             script.async = true;
+            script.addEventListener("load", loaded);
             document.querySelector("head").appendChild(script);
         }
     })
