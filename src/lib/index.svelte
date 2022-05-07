@@ -1,12 +1,26 @@
 <script>
-    import { onMount, createEventDispatcher, afterUpdate } from "svelte";
+    import { onMount, createEventDispatcher, afterUpdate, onDestroy } from "svelte";
+    import { browser } from "$app/env";
     export let attrs;
     export let lang = undefined;
 
     const dispatch = createEventDispatcher();
 
+    const load = ()=>{
+        dispatch("load");
+    }
+
+ 
+    onDestroy(()=>{
+        if (browser){
+            let url = "https://cusdis.com/js/cusdis.es.js";
+            let script  = document.querySelector(`script[src="${url}"]`);
+            script.removeEventListener("load", load);
+        }
+    })
+
     afterUpdate(async ()=>{
-        loaded();
+        load();
     })
 
     onMount(async ()=>{
@@ -22,10 +36,6 @@
             }
         }
 
-        const loaded = ()=>{
-            dispatch("load");
-        }
-
         let url = "https://cusdis.com/js/cusdis.es.js";
         let script  = document.querySelector(`script[src="${url}"]`);
         if (!script){
@@ -33,7 +43,7 @@
             script.src = url;
             script.defer = true;
             script.async = true;
-            script.addEventListener("load", loaded);
+            script.addEventListener("load", load);
             document.querySelector("head").appendChild(script);
         }
     })
